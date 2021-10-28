@@ -26,28 +26,19 @@
     <sec:authentication var="userLogin" property="principal" />
 
     <sec:authorize access="!isAuthenticated()">
-        <h2>Welcome page | <a href="${contextPath}/login" class="nav-link px-2 text-white">Login</a></h2>
+        <h2>Welcome page </h2>
     </sec:authorize>
 
     <sec:authorize access="isAuthenticated() && hasAuthority('ROLE_ADMIN')">
-        <h2>Welcome ${pageContext.request.userPrincipal.name} |
-            <a href="${contextPath}/admin" class="nav-link px-2 text-white">Admin page</a> |
-            <a onclick="document.forms['logoutForm'].submit()">Logout</a>
-        </h2>
+        <h2>Welcome ${pageContext.request.userPrincipal.name}</h2>
     </sec:authorize>
 
     <sec:authorize access="isAuthenticated() && hasAuthority('ROLE_CARRIER')">
-        <h2>Welcome ${pageContext.request.userPrincipal.name} |
-            <a href="${contextPath}/carrier" class="nav-link px-2 text-white">Carrier page</a> |
-            <a onclick="document.forms['logoutForm'].submit()">Logout</a>
-        </h2>
+        <h2>Welcome ${pageContext.request.userPrincipal.name}</h2>
     </sec:authorize>
 
     <sec:authorize access="isAuthenticated() && hasAuthority('ROLE_CUSTOMER')">
-        <h2>Welcome ${pageContext.request.userPrincipal.name} |
-            <a href="${contextPath}/customer" class="nav-link px-2 text-white">Customer page</a> |
-            <a onclick="document.forms['logoutForm'].submit()">Logout</a>
-        </h2>
+        <h2>Welcome ${pageContext.request.userPrincipal.name}</h2>
     </sec:authorize>
 
 </div>

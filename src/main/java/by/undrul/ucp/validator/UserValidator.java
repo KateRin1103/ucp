@@ -28,16 +28,16 @@ public class UserValidator implements Validator {
         if(user.getUsername().length()<6 || user.getUsername().length()>32){
             errors.rejectValue("username","Size.userForm.username");
         }
-        if(userService.findUserByUsername(user.getUsername())!= null){
+        if(userService.findByUsername(user.getUsername())!= null){
             errors.rejectValue("username","Duplicate.userForm.username");
         }
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"password","Required");
         if(user.getPassword().length()<6 || user.getPassword().length()>32){
             errors.rejectValue("password","Size.userForm.password");
         }
-        if(!user.getConfirmPassword().equals(user.getPassword())){
+        /*if(!user.getConfirmPassword().equals(user.getPassword())){
             errors.rejectValue("confirmPassword","Different.userForm.password");
 
-        }
+        }*/
     }
 }
