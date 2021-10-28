@@ -62,13 +62,18 @@ public class UserController {
     public String admin(Model model) {
         return "admin";
     }
+
     @RequestMapping(value = "/carrier", method = RequestMethod.GET)
     public String carrier(Model model) {
+
         return "carrier";
     }
+
     @RequestMapping(value = "/customer", method = RequestMethod.GET)
     public String customer(Model model) {
+
         return "customer";
     }
+
 
 }

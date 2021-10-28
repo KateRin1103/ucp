@@ -14,9 +14,11 @@
 <html lang="en">
 <head>
     <title>Admin</title>
+    <%@include file="/WEB-INF/jsp/util/baseCss.jsp"%>
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 </head>
     <body>
+    <%@include file="/WEB-INF/jsp/util/header.jsp"%>
     <div class="container">
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="post" action="${contextPath}/logout">
@@ -31,6 +33,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-
+    <%@ include file="/WEB-INF/jsp/util/footer.jsp" %>
     </body>
 </html>
