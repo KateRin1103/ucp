@@ -6,7 +6,7 @@
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
            <a href="${contextPath}/">
-               <img src="${contextPath}/resources/images/logo.png" width="50" height="50">
+               <img src="${contextPath}/resources/images/logo1.png" width="50" height="50">
            </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="${contextPath}/" class="nav-link px-2 text-white">Главная</a></li>

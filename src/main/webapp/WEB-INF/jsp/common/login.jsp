@@ -20,7 +20,7 @@
 <main role="main" class="form-signin">
         <form method="POST" action="${contextPath}/login">
             <br><br>
-            <img class="mb-4 mx-auto d-block" src="${contextPath}/resources/images/logo.png" alt="" width="100" height="100">
+            <img class="mb-4 mx-auto d-block" src="${contextPath}/resources/images/logo1.png" alt="" width="100" height="100">
             <h1 class="h3 mb-3 fw-normal">Вход</h1>
             <div class="form-floating">
                 <input type="text" class="form-control" id="username" name="username" placeholder="Имя пользователя" autofocus>

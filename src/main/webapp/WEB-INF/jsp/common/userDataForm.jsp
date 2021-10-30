@@ -2,9 +2,9 @@
 
 <c:set var="imageRef" scope="session" value="https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg"/>
 
-<c:if test="${user.image ne ''}">
+<%--<c:if test="${user.image ne ''}">
     <c:set var="imageRef" scope="session" value="data:image/jpg;base64,${user.image}"/>
-</c:if>
+</c:if>--%>
 
 
 <div class="row ">
@@ -15,12 +15,12 @@
             <h1>Фото: </h1>
 
             <img id="output"
-                 width="350px"
-                 height="350px"
+                 width="300px"
+                 height="300px"
                  alt="picture"
                  src="${imageRef}"/>
 
-            <spring:bind path="imageUpdate">
+            <%--<spring:bind path="imageUpdate">
                 <form:input id="imageUpdate" type="file" path="imageUpdate" onchange="loadFile(event)"
                             disabled="${formDisabled}"/>
                 <form:errors path="imageUpdate"/>
@@ -34,9 +34,8 @@
                         URL.revokeObjectURL(output.src)
                     }
                 };
-            </script>
+            </script>--%>
         </div>
-
     </div>
 
 

@@ -26,6 +26,8 @@
                    modelAttribute="user" enctype="multipart/form-data">
             <%@ include file="/WEB-INF/jsp/common/userDataForm.jsp" %>
 
+            <br>
+            <br>
             <button class="btn btn-lg btn-warning btn-block" type="submit">
                 Изменить
             </button>
