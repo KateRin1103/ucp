@@ -11,10 +11,10 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="${contextPath}/" class="nav-link px-2 text-white">Главная</a></li>
                 <sec:authorize access="isAuthenticated()">
-                <li><a href="${contextPath}/parcels" class="nav-link px-2 text-white">Почтовые отправления</a></li>
+                <li><a href="${contextPath}/routes" class="nav-link px-2 text-white">Маршруты</a></li>
                 </sec:authorize>
-                <li><a href="${contextPath}/stores" class="nav-link px-2 text-white">Интернет-магазины</a></li>
-                <li><a href="${contextPath}/companies" class="nav-link px-2 text-white">Почтовые службы</a></li>
+                <li><a href="${contextPath}/companies" class="nav-link px-2 text-white">Компании</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">Почтовые службы</a></li>
                 <li><a href="${contextPath}/systems" class="nav-link px-2 text-white">Платежные системы</a></li>
                 <li><a href="${contextPath}/about" class="nav-link px-2 text-white">О нас</a></li>
 
