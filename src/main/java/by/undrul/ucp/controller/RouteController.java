@@ -1,5 +1,6 @@
 package by.undrul.ucp.controller;
 
+import by.undrul.ucp.dto.CompanyDTO;
 import by.undrul.ucp.dto.RouteDTO;
 import by.undrul.ucp.exception.ServiceException;
 import by.undrul.ucp.service.CityService;
@@ -43,6 +44,17 @@ public class RouteController {
         return modelAndView;
     }
 
+    @GetMapping("/{id}")
+    public ModelAndView getDetails(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        RouteDTO dto = routeService.findById(id);
+        modelAndView.addObject("route", dto);
+
+        modelAndView.setViewName("/route/routeDetail");
+        return modelAndView;
+    }
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/add")
     public ModelAndView addRoute() {
@@ -81,5 +93,33 @@ public class RouteController {
         routeService.delete(id);
         return redirectTo("routes");
     }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/update/{id}")
+    public ModelAndView update(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        RouteDTO routeDTO = routeService.findById(id);
+        modelAndView.addObject("cities", cityService.findAll());
+        modelAndView.addObject("routeForm", routeDTO);
+        modelAndView.setViewName("/route/updateRoute");
+
+        return modelAndView;
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PostMapping("/update/{id}")
+    public String update(@PathVariable Long id,
+                         @Validated @ModelAttribute("routeForm") RouteDTO routeDTO,
+                         BindingResult bindingResult) {
+        if (checkBindingResult(bindingResult)) {
+            return goBackTo("/route/updateRoute");
+        }
+        routeDTO.setId(id);
+        routeService.update(routeDTO);
+
+        return redirectTo("routes");
+    }
+
 
 }

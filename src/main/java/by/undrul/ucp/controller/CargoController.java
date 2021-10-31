@@ -95,6 +95,7 @@ public class CargoController {
 
         CargoDTO cargoDTO = cargoService.findById(id);
 
+
         modelAndView.addObject("types", cargoTypeService.findAll());
         modelAndView.addObject("cargoForm", cargoDTO);
         modelAndView.setViewName("/cargo/updateCargo");

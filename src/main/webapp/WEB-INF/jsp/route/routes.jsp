@@ -21,11 +21,12 @@
             <div class="col-sm-6">
                 <div class="card bg-light" style="margin-bottom: 10px;" >
                     <div class="card-body ">
-                        <h5 class="card-title ">${route.city_a.name}</h5>
-                        <a href="#" class="card-text">${route.city_b.name}</a>
-                        <br>
+                        <h5 class="card-title ">${route.name}</h5>
+
+                        <p class="card-text">${route.city_a.name}-${route.city_b.name}</p>
+                        <p class="card-text">${route.distance} км</p>
                         <div class="d-block gap-2 mt-2">
-                            <a href="#" class="btn btn-warning">Подробнее</a>
+                            <a href="${contextPath}/routes/${route.id}" class="btn btn-warning">Подробнее</a>
                             <sec:authorize access="hasAuthority('ROLE_ADMIN')">
                                 <a href="${contextPath}/routes/update/${route.id}" class="btn btn-dark ">Изменить</a>
                                 <a href="${contextPath}/routes/delete/${route.id}" class="btn btn-danger" onclick="return confirm('Вы уверены?')">Удалить</a>

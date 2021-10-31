@@ -24,5 +24,22 @@
             <form:errors path="city_b"/>
         </div>
     </spring:bind>
+    <spring:bind path="name">
+        <div class="form-group ${status.error ? 'has-error' : ''}">
+            <form:input type="text" path="name" class="form-control" placeholder="Название маршрута"
+                        autofocus="true"/>
+            <form:errors path="name"/>
+        </div>
+        <span style="color:red" >
+                ${message}
+        </span>
+    </spring:bind>
+    <spring:bind path="distance">
+        <div class="form-group ${status.error ? 'has-error' : ''}">
+            <form:input type="number" step="0.1" path="distance" class="form-control" placeholder="Расстояние"
+                        autofocus="true"/>
+            <form:errors path="distance"/>
+        </div>
+    </spring:bind>
 
 </div>

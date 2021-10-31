@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 public class CityDtoConverter implements Converter<String, CityDTO> {
     private final CityService cityService;
 
-
     @Autowired
     public CityDtoConverter(CityService cityService){
         this.cityService=cityService;

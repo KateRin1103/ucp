@@ -14,4 +14,6 @@ public interface RouteService {
     List<RouteDTO> findAll();
 
     RouteDTO findById(Long id);
+
+    RouteDTO findByName(String name);
 }
