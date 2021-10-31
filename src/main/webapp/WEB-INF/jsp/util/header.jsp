@@ -14,7 +14,7 @@
                 <li><a href="${contextPath}/routes" class="nav-link px-2 text-white">Маршруты</a></li>
                 </sec:authorize>
                 <li><a href="${contextPath}/companies" class="nav-link px-2 text-white">Компании</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Почтовые службы</a></li>
+                <li><a href="${contextPath}/cargos" class="nav-link px-2 text-white">Грузы</a></li>
                 <li><a href="${contextPath}/systems" class="nav-link px-2 text-white">Платежные системы</a></li>
                 <li><a href="${contextPath}/about" class="nav-link px-2 text-white">О нас</a></li>
 
@@ -52,7 +52,6 @@
                         <li><a class="dropdown-item" href="#">Логин: ${userLogin.username}</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="${contextPath}/users">Управление пользователями</a></li>
-                        <li><a class="dropdown-item" href="${contextPath}/statistics">Статистика</a></li>
                         <li><a class="dropdown-item" href="${contextPath}/personal-cabinet">Профиль</a></li>
                         <li><a class="dropdown-item" href="${contextPath}/logout">Выйти</a></li>
                     </ul>

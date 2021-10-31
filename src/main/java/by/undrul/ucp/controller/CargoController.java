@@ -1,9 +1,9 @@
 package by.undrul.ucp.controller;
 
-import by.undrul.ucp.dto.CompanyDTO;
-import by.undrul.ucp.dto.RouteDTO;
+import by.undrul.ucp.dto.CargoDTO;
 import by.undrul.ucp.exception.ServiceException;
-import by.undrul.ucp.service.CompanyService;
+import by.undrul.ucp.service.CargoService;
+import by.undrul.ucp.service.CargoTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -14,24 +14,26 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import static by.undrul.ucp.controller.ControllerHelper.*;
-import static by.undrul.ucp.controller.ControllerHelper.redirectTo;
 
 @Controller
-@RequestMapping("/companies")
-public class CompanyController {
-    private final CompanyService companyService;
+@RequestMapping("/cargos")
+public class CargoController {
+    private final CargoService cargoService;
+    private final CargoTypeService cargoTypeService;
 
     @Autowired
-    public CompanyController(CompanyService companyService){
-        this.companyService=companyService;
+    public CargoController(CargoService cargoService,
+                           CargoTypeService cargoTypeService) {
+        this.cargoService = cargoService;
+        this.cargoTypeService = cargoTypeService;
     }
 
     @GetMapping
     public ModelAndView getAll() {
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.setViewName("company/companies");
-        modelAndView.addObject("companies", companyService.findAll());
+        modelAndView.setViewName("cargo/cargos");
+        modelAndView.addObject("cargos", cargoService.findAll());
 
         return modelAndView;
     }
@@ -40,49 +42,50 @@ public class CompanyController {
     public ModelAndView getDetails(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView();
 
-        CompanyDTO dto = companyService.findById(id);
-        modelAndView.addObject("company", dto);
+        CargoDTO dto = cargoService.findById(id);
+        modelAndView.addObject("cargo", dto);
 
-        modelAndView.setViewName("/company/companyDetail");
+        modelAndView.setViewName("/cargo/cargoDetail");
         return modelAndView;
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/add")
-    public ModelAndView addCompany() {
+    public ModelAndView addCargo() {
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.addObject("companyForm", new CompanyDTO());
-        modelAndView.setViewName("company/addCompany");
+        modelAndView.addObject("types", cargoTypeService.findAll());
+        modelAndView.addObject("cargoForm", new CargoDTO());
+        modelAndView.setViewName("cargo/addCargo");
 
         return modelAndView;
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/add")
-    public String addCompany(Model model,
-                           @Validated @ModelAttribute("companyForm") CompanyDTO dto,
+    public String addCargo(Model model,
+                           @Validated @ModelAttribute("cargoForm") CargoDTO dto,
                            BindingResult result) {
         if (checkBindingResult(result)) {
-            model.addAttribute("companyForm", dto);
-            return "company/addCompany";
+            model.addAttribute("cargoForm", dto);
+            return "cargo/addCargo";
         }
 
         try {
-            companyService.save(dto);
+            cargoService.save(dto);
         } catch (ServiceException e) {
             model.addAttribute("message", e.getMessage());
-            return goBackTo("company/addCompany");
+            return goBackTo("cargo/addCargo");
         }
 
-        return redirectTo("companies");
+        return redirectTo("cargos");
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
-        companyService.delete(id);
-        return redirectTo("companies");
+        cargoService.delete(id);
+        return redirectTo("cargos");
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -90,9 +93,11 @@ public class CompanyController {
     public ModelAndView update(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView();
 
-        CompanyDTO companyDTO = companyService.findById(id);
-        modelAndView.addObject("companyForm", companyDTO);
-        modelAndView.setViewName("/company/updateCompany");
+        CargoDTO cargoDTO = cargoService.findById(id);
+
+        modelAndView.addObject("types", cargoTypeService.findAll());
+        modelAndView.addObject("cargoForm", cargoDTO);
+        modelAndView.setViewName("/cargo/updateCargo");
 
         return modelAndView;
     }
@@ -100,15 +105,15 @@ public class CompanyController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/update/{id}")
     public String update(@PathVariable Long id,
-                         @Validated @ModelAttribute("companyForm") CompanyDTO companyDTO,
+                         @Validated @ModelAttribute("cargoForm") CargoDTO cargoDTO,
                          BindingResult bindingResult) {
         if (checkBindingResult(bindingResult)) {
-            return goBackTo("/company/updateCompany");
+            return goBackTo("/cargo/updateCargo");
         }
-        companyDTO.setId(id);
-        companyService.update(companyDTO);
+        cargoDTO.setId(id);
+        cargoService.update(cargoDTO);
 
-        return redirectTo("companies");
+        return redirectTo("cargos");
     }
 
 }

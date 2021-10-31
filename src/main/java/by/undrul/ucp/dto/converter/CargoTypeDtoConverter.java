@@ -4,7 +4,9 @@ import by.undrul.ucp.dto.CargoTypeDTO;
 import by.undrul.ucp.service.CargoTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
+@Component("cargoTypeDtoConverter")
 public class CargoTypeDtoConverter implements Converter<String, CargoTypeDTO> {
     private final CargoTypeService cargoTypeService;
 
