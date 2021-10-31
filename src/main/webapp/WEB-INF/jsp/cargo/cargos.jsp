@@ -12,7 +12,7 @@
     <p class="display-4 text-center">Грузы</p>
     <sec:authorize access="hasAuthority('ROLE_ADMIN')">
 
-        <a class="btn btn-warning addButton" href="${contextPath}/companies/add">Добавить новый груз</a>
+        <a class="btn btn-warning addButton" href="${contextPath}/cargos/add">Добавить новый груз</a>
 
     </sec:authorize>
 

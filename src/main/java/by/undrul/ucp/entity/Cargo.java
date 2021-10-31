@@ -14,7 +14,8 @@ public class Cargo extends AbstractEntity{
 
     @Column(name="name")
     private String name;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "type_id")
     private CargoType cargoType;
     @Column(name="weight")
     private double weight;
