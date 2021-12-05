@@ -1,6 +1,8 @@
 package by.undrul.ucp.entity;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +13,8 @@ import java.util.Set;
 @Table(name = "users")
 @Getter
 @Setter
+@EqualsAndHashCode
+@NoArgsConstructor
 public class User extends AbstractEntity{
 
     @Column(name = "username")
@@ -37,20 +41,6 @@ public class User extends AbstractEntity{
     @PrePersist
     protected void onCreate() {
         blocked = 0;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        User user = (User) o;
-        return Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(blocked, user.blocked);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), username, password, firstName, lastName, email, blocked);
     }
 
 }

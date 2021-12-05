@@ -1,5 +1,6 @@
 package by.undrul.ucp.service;
 
+import by.undrul.ucp.dto.CityDTO;
 import by.undrul.ucp.dto.RouteDTO;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface RouteService {
     RouteDTO findById(Long id);
 
     RouteDTO findByName(String name);
+    RouteDTO findByCityA(CityDTO cityA);
+    RouteDTO findByCityB(CityDTO cityB);
 }

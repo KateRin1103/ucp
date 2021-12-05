@@ -1,27 +1,23 @@
 package by.undrul.ucp.dto;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@EqualsAndHashCode
 public class RouteDTO extends AbstractDTO {
 
     private String name;
-
     @NotNull(message = "Место отправки должно быть выбрано!")
-    private CityDTO city_a;
-
+    private CityDTO cityA;
     @NotNull(message = "Место доставки должно быть выбрано!")
-    private CityDTO city_b;
-
+    private CityDTO cityB;
     private double distance;
-
-    @Null
-    private Set<CityDTO> cities;
+    private DeliveryMethodDTO deliveryMethod;
 }

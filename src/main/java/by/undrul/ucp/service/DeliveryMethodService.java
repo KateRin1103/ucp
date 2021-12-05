@@ -9,5 +9,5 @@ public interface DeliveryMethodService {
 
     DeliveryMethodDTO findById(Long id);
 
-    DeliveryMethodDTO findByMethod(String method);
+    DeliveryMethodDTO findByName(String name);
 }

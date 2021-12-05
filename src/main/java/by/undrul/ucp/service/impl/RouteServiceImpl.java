@@ -1,9 +1,9 @@
 package by.undrul.ucp.service.impl;
 
+import by.undrul.ucp.dto.CityDTO;
 import by.undrul.ucp.dto.RouteDTO;
 import by.undrul.ucp.dto.mapper.CityMapper;
 import by.undrul.ucp.dto.mapper.RouteMapper;
-import by.undrul.ucp.entity.City;
 import by.undrul.ucp.entity.Route;
 import by.undrul.ucp.exception.ResourceNotFoundException;
 import by.undrul.ucp.repository.CityRepository;
@@ -13,30 +13,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class RouteServiceImpl implements RouteService {
 
+    @Autowired
     private final RouteMapper routeMapper;
+    @Autowired
     private final RouteRepository routeRepository;
+    @Autowired
     private final CityRepository cityRepository;
+    @Autowired
     private final CityMapper cityMapper;
 
-    @Autowired
-    public RouteServiceImpl(RouteMapper routeMapper,
-                            RouteRepository routeRepository,
-                            CityRepository cityRepository,
-                            CityMapper cityMapper) {
-
+    public RouteServiceImpl(RouteMapper routeMapper, RouteRepository routeRepository, CityRepository cityRepository, CityMapper cityMapper) {
         this.routeMapper = routeMapper;
         this.routeRepository = routeRepository;
-        this.cityRepository=cityRepository;
-        this.cityMapper=cityMapper;
-
+        this.cityRepository = cityRepository;
+        this.cityMapper = cityMapper;
     }
 
 
@@ -44,12 +39,6 @@ public class RouteServiceImpl implements RouteService {
     @Transactional
     public RouteDTO save(RouteDTO routeDto) {
         Route route = routeMapper.toEntity(routeDto);
-
-       /* Set<City> cities = new HashSet<>();
-        cities.add(cityMapper.toEntity(routeDto.getCity_a()));
-        cities.add(cityMapper.toEntity(routeDto.getCity_b()));
-
-        route.setCities(cities);*/
         routeRepository.save(route);
         return routeDto;
     }
@@ -64,7 +53,8 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public void delete(Long routeId) {
-        Route route = routeRepository.findById(routeId).orElseThrow(() -> new ResourceNotFoundException(routeId));
+        Route route = routeRepository.findById(routeId)
+                .orElseThrow(() -> new ResourceNotFoundException(routeId));
         routeRepository.delete(route);
     }
 
@@ -86,6 +76,18 @@ public class RouteServiceImpl implements RouteService {
     @Override
     public RouteDTO findByName(String name) {
         Route route = routeRepository.findByName(name);
+        return routeMapper.toDto(route);
+    }
+
+    @Override
+    public RouteDTO findByCityA(CityDTO cityA) {
+        Route route = routeRepository.findByCityA(cityMapper.toEntity(cityA));
+        return routeMapper.toDto(route);
+    }
+
+    @Override
+    public RouteDTO findByCityB(CityDTO cityB) {
+        Route route = routeRepository.findByCityB(cityMapper.toEntity(cityB));
         return routeMapper.toDto(route);
     }
 }

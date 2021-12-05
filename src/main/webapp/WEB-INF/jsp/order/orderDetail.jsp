@@ -17,11 +17,12 @@
     <h1 class="display-3">${route.name}</h1>
 
     <h5>Начальная точка: ${route.city_a.name}</h5>
-    <p>${route.city_a.name} -
+
     <c:forEach var="city" items="${route.cities}">
-        ${city.name} -
+        <p>${city.name}</p>
+        <br>
     </c:forEach>
-    ${route.city_b.name}</p>
+
     <h5>Конечная точка: ${route.city_b.name}</h5>
     <p>Расстояние: ${route.distance} км</p>
 

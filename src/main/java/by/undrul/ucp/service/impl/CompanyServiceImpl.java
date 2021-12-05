@@ -2,7 +2,9 @@ package by.undrul.ucp.service.impl;
 
 import by.undrul.ucp.dto.CompanyDTO;
 import by.undrul.ucp.dto.RouteDTO;
+import by.undrul.ucp.dto.UserDTO;
 import by.undrul.ucp.dto.mapper.CompanyMapper;
+import by.undrul.ucp.dto.mapper.UserMapper;
 import by.undrul.ucp.entity.Company;
 import by.undrul.ucp.entity.Route;
 import by.undrul.ucp.exception.ResourceNotFoundException;
@@ -12,18 +14,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
     private  final CompanyMapper companyMapper;
     private  final CompanyRepository companyRepository;
+    private final UserMapper userMapper;
 
     @Autowired
-    public CompanyServiceImpl(CompanyMapper companyMapper,
-                              CompanyRepository companyRepository){
-        this.companyMapper=companyMapper;
-        this.companyRepository=companyRepository;
+    public CompanyServiceImpl(CompanyMapper companyMapper, CompanyRepository companyRepository, UserMapper userMapper) {
+        this.companyMapper = companyMapper;
+        this.companyRepository = companyRepository;
+        this.userMapper = userMapper;
     }
 
     @Override
@@ -67,6 +71,24 @@ public class CompanyServiceImpl implements CompanyService {
     @Transactional(readOnly = true)
     public CompanyDTO findByName(String name) {
         Company company = companyRepository.findByName(name);
+        return companyMapper.toDto(company);
+    }
+
+    @Override
+    public void addRoute(Long id, RouteDTO route) {
+        CompanyDTO company = this.findById(id);
+        List<RouteDTO> routes = company.getRoutes();
+        if (routes == null) {
+            routes = new ArrayList<>();
+        }
+        routes.add(route);
+        company.setRoutes(routes);
+        companyRepository.save(companyMapper.toEntity(company));
+    }
+
+    @Override
+    public CompanyDTO findByUser(UserDTO user) {
+       Company company = companyRepository.findByUser(userMapper.toEntity(user));
         return companyMapper.toDto(company);
     }
 }

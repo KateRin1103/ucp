@@ -29,15 +29,7 @@
         <h2>Welcome page </h2>
     </sec:authorize>
 
-    <sec:authorize access="isAuthenticated() && hasAuthority('ROLE_ADMIN')">
-        <h2>Welcome ${pageContext.request.userPrincipal.name}</h2>
-    </sec:authorize>
-
-    <sec:authorize access="isAuthenticated() && hasAuthority('ROLE_CARRIER')">
-        <h2>Welcome ${pageContext.request.userPrincipal.name}</h2>
-    </sec:authorize>
-
-    <sec:authorize access="isAuthenticated() && hasAuthority('ROLE_CUSTOMER')">
+    <sec:authorize access="isAuthenticated()">
         <h2>Welcome ${pageContext.request.userPrincipal.name}</h2>
     </sec:authorize>
 

@@ -1,6 +1,7 @@
 package by.undrul.ucp.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Set;
 @Table(name = "roles")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Role extends AbstractEntity{
 
     @Column(name = "name")
@@ -18,6 +20,4 @@ public class Role extends AbstractEntity{
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
-    public Role() {
-    }
 }

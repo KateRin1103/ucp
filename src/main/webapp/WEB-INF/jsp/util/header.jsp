@@ -10,13 +10,16 @@
            </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="${contextPath}/" class="nav-link px-2 text-white">Главная</a></li>
-                <sec:authorize access="isAuthenticated()">
+
+                <sec:authorize access="isAuthenticated() && hasAuthority('ROLE_CARRIER')">
                 <li><a href="${contextPath}/routes" class="nav-link px-2 text-white">Маршруты</a></li>
+                <li><a href="${contextPath}/companies/myCompany" class="nav-link px-2 text-white">Моя компания</a></li>
                 </sec:authorize>
-                <li><a href="${contextPath}/companies" class="nav-link px-2 text-white">Компании</a></li>
+<%--                <li><a href="${contextPath}/companies" class="nav-link px-2 text-white">Компании</a></li>--%>
+                <sec:authorize access="isAuthenticated() && hasAuthority('ROLE_ADMIN')|| hasAuthority('ROLE_CARREER')">
                 <li><a href="${contextPath}/cargos" class="nav-link px-2 text-white">Грузы</a></li>
-                <li><a href="${contextPath}/systems" class="nav-link px-2 text-white">Платежные системы</a></li>
-                <li><a href="${contextPath}/about" class="nav-link px-2 text-white">О нас</a></li>
+                </sec:authorize>
+
 
             </ul>
 
@@ -36,7 +39,6 @@
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
                         <li><a class="dropdown-item" href="#">Логин: ${userLogin.username}</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="${contextPath}/statistics">Статистика</a></li>
                         <li><a class="dropdown-item" href="${contextPath}/personal-cabinet">Профиль</a></li>
                         <li><a class="dropdown-item" href="${contextPath}/logout">Выйти</a></li>
                     </ul>

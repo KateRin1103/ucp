@@ -1,5 +1,6 @@
 package by.undrul.ucp.entity;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,22 +13,9 @@ import java.util.Objects;
 @Table(name = "delivery_methods")
 @Getter
 @Setter
+@EqualsAndHashCode
 public class DeliveryMethod extends AbstractEntity{
-    @Column(name = "method")
-    private String method;
+    @Column(name = "name")
+    private String name;
 
-    @Override
-    public boolean equals(Object o) {
-
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        DeliveryMethod that = (DeliveryMethod) o;
-        return Objects.equals(method, that.method);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), method);
-    }
 }

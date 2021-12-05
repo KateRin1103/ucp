@@ -2,8 +2,10 @@ package by.undrul.ucp.controller;
 
 import by.undrul.ucp.dto.CompanyDTO;
 import by.undrul.ucp.dto.RouteDTO;
+import by.undrul.ucp.dto.UserDTO;
 import by.undrul.ucp.exception.ServiceException;
 import by.undrul.ucp.service.CompanyService;
+import by.undrul.ucp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
+
 import static by.undrul.ucp.controller.ControllerHelper.*;
 import static by.undrul.ucp.controller.ControllerHelper.redirectTo;
 
@@ -20,10 +24,13 @@ import static by.undrul.ucp.controller.ControllerHelper.redirectTo;
 @RequestMapping("/companies")
 public class CompanyController {
     private final CompanyService companyService;
+    private final UserService userService;
 
     @Autowired
-    public CompanyController(CompanyService companyService){
+    public CompanyController(CompanyService companyService,
+                             UserService userService){
         this.companyService=companyService;
+        this.userService=userService;
     }
 
     @GetMapping
@@ -32,6 +39,22 @@ public class CompanyController {
 
         modelAndView.setViewName("company/companies");
         modelAndView.addObject("companies", companyService.findAll());
+
+        return modelAndView;
+    }
+
+    @GetMapping("/myCompany")
+    public ModelAndView myCompany(Principal principal) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("company/companyDetail");
+
+        UserDTO userDTO = userService.findByUsername(principal.getName());
+        CompanyDTO myCompany = companyService.findByUser(userDTO);
+
+        if(myCompany!=null) {
+            modelAndView.addObject("company", myCompany);
+        }
 
         return modelAndView;
     }
@@ -47,7 +70,7 @@ public class CompanyController {
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_CARRIER')")
     @GetMapping("/add")
     public ModelAndView addCompany() {
         ModelAndView modelAndView = new ModelAndView();
@@ -58,17 +81,20 @@ public class CompanyController {
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_CARRIER')")
     @PostMapping("/add")
     public String addCompany(Model model,
                            @Validated @ModelAttribute("companyForm") CompanyDTO dto,
-                           BindingResult result) {
+                           BindingResult result,
+                             Principal principal) {
         if (checkBindingResult(result)) {
             model.addAttribute("companyForm", dto);
             return "company/addCompany";
         }
 
+        UserDTO user = userService.findByUsername(principal.getName());
         try {
+            dto.setUser(user);
             companyService.save(dto);
         } catch (ServiceException e) {
             model.addAttribute("message", e.getMessage());

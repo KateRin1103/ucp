@@ -1,17 +1,21 @@
 package by.undrul.ucp.entity;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "companies")
 @Getter
 @Setter
+@NoArgsConstructor
+@EqualsAndHashCode
 public class Company extends AbstractEntity{
     @Column(name = "name")
     private String name;
@@ -23,21 +27,13 @@ public class Company extends AbstractEntity{
     private double price_kg;
     @Column(name = "price_km")
     private double price_km;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public Company() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Company company = (Company) o;
-        return Double.compare(company.price_kg, price_kg) == 0 && Double.compare(company.price_km, price_km) == 0 && Objects.equals(name, company.name) && Objects.equals(email, company.email) && Objects.equals(description, company.description);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), name, email, description, price_kg, price_km);
-    }
+    @ManyToMany(cascade = {CascadeType.MERGE})
+    @JoinTable(name = "companies_routes",
+            joinColumns = @JoinColumn(name = "company_id"),
+            inverseJoinColumns = @JoinColumn(name = "route_id"))
+    private List<Route> routes = new ArrayList<>();
 }

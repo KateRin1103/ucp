@@ -88,7 +88,7 @@ public class UserController {
         }
         if (Objects.nonNull(seller)) {
             RoleDTO roleDto = new RoleDTO();
-            roleDto.setName("ROLE_SELLER");
+            roleDto.setName("ROLE_CARREER");
             roleDto.setId(3L);
             if (userDTO.getRoles().contains(roleDto)) {
                 userDTO.getRoles().remove(roleDto);

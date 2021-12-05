@@ -37,8 +37,8 @@ public class DeliveryMethodServiceImpl implements DeliveryMethodService {
     }
 
     @Override
-    public DeliveryMethodDTO findByMethod(String method) {
-        DeliveryMethod deliveryMethod = repository.findByMethod(method);
+    public DeliveryMethodDTO findByName(String name) {
+        DeliveryMethod deliveryMethod = repository.findByName(name);
         return mapper.toDto(deliveryMethod);
     }
 }
