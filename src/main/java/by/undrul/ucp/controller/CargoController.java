@@ -1,9 +1,11 @@
 package by.undrul.ucp.controller;
 
 import by.undrul.ucp.dto.CargoDTO;
+import by.undrul.ucp.dto.RouteDTO;
 import by.undrul.ucp.exception.ServiceException;
 import by.undrul.ucp.service.CargoService;
 import by.undrul.ucp.service.CargoTypeService;
+import by.undrul.ucp.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -20,12 +22,13 @@ import static by.undrul.ucp.controller.ControllerHelper.*;
 public class CargoController {
     private final CargoService cargoService;
     private final CargoTypeService cargoTypeService;
+    private final CityService cityService;
 
     @Autowired
-    public CargoController(CargoService cargoService,
-                           CargoTypeService cargoTypeService) {
+    public CargoController(CargoService cargoService, CargoTypeService cargoTypeService, CityService cityService) {
         this.cargoService = cargoService;
         this.cargoTypeService = cargoTypeService;
+        this.cityService = cityService;
     }
 
     @GetMapping
@@ -49,7 +52,7 @@ public class CargoController {
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+
     @GetMapping("/add")
     public ModelAndView addCargo() {
         ModelAndView modelAndView = new ModelAndView();
@@ -61,24 +64,22 @@ public class CargoController {
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+
     @PostMapping("/add")
-    public String addCargo(Model model,
+    public ModelAndView addCargo(Model model,
                            @Validated @ModelAttribute("cargoForm") CargoDTO dto,
                            BindingResult result) {
-        if (checkBindingResult(result)) {
-            model.addAttribute("cargoForm", dto);
-            return "cargo/addCargo";
-        }
 
-        try {
-            cargoService.save(dto);
-        } catch (ServiceException e) {
-            model.addAttribute("message", e.getMessage());
-            return goBackTo("cargo/addCargo");
-        }
+        ModelAndView modelAndView = new ModelAndView();
 
-        return redirectTo("cargos");
+            modelAndView.addObject("cargo", dto);
+            modelAndView.setViewName("route/chooseRoute");
+        modelAndView.addObject("cities", cityService.findAll());
+        modelAndView.addObject("routeForm", new RouteDTO());
+        cargoService.save(dto);
+        return modelAndView;
+
+
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

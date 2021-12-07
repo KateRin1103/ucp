@@ -19,7 +19,9 @@
                 <sec:authorize access="isAuthenticated() && hasAuthority('ROLE_ADMIN')|| hasAuthority('ROLE_CARREER')">
                 <li><a href="${contextPath}/cargos" class="nav-link px-2 text-white">Грузы</a></li>
                 </sec:authorize>
-
+                <sec:authorize access="isAuthenticated()">
+                <li><a href="${contextPath}/cargos/add" class="nav-link px-2 text-white">Оставить заявку</a></li>
+                </sec:authorize>
 
             </ul>
 

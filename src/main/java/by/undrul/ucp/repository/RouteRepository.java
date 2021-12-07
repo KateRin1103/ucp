@@ -13,4 +13,6 @@ public interface RouteRepository extends JpaRepository<Route, Long> {
 
     Route findByCityA(City cityA);
     Route findByCityB(City cityB);
+
+    Route findByCityAAndCityB(City cityA, City cityB);
 }

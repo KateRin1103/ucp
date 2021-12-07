@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 import static by.undrul.ucp.controller.ControllerHelper.*;
 
@@ -90,6 +91,13 @@ public class RouteController {
             UserDTO userDTO = userService.findByUsername(principal.getName());
             CompanyDTO companyDTO = companyService.findByUser(userDTO);
             companyService.addRoute(companyDTO.getId(),dto);
+            RouteDTO route = new RouteDTO();
+            route.setDistance(dto.getDistance());
+            route.setCityA(dto.getCityB());
+            route.setCityB(dto.getCityA());
+            route.setName(dto.getName());
+            route.setDeliveryMethod(dto.getDeliveryMethod());
+            companyService.addRoute(companyDTO.getId(), route);
 //            routeService.save(dto);
         } catch (ServiceException e) {
             model.addAttribute("message", e.getMessage());
@@ -167,6 +175,40 @@ public class RouteController {
         }
 
         return redirectTo("routes/add");
+    }
+
+
+    @GetMapping("/choose")
+    public ModelAndView chooseRoute(Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.addObject("cargo",model.getAttribute("cargo"));
+        modelAndView.addObject("cities", cityService.findAll());
+        modelAndView.addObject("routeForm", new RouteDTO());
+        modelAndView.setViewName("route/chooseRoute");
+
+        return modelAndView;
+    }
+
+
+    @PostMapping("/choose")
+    public ModelAndView chooseRoute(Model model,
+                           @Validated @ModelAttribute("routeForm") RouteDTO dto,
+                           BindingResult result,
+                           Principal principal) {
+
+
+        Map<CompanyDTO,Map<List<CityDTO>,Double>> routes = routeService.findRoute(dto.getCityA(), dto.getCityB());
+
+
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.addObject("routes", routes);
+        modelAndView.addObject("cargo", model.getAttribute("cargo"));
+        modelAndView.setViewName("route/resultRoutes");
+
+        return modelAndView;
     }
 
 }
