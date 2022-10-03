@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.List;
 
 import static by.labworks.ucp.controller.ControllerHelper.*;
 
@@ -73,15 +74,15 @@ public class OrderController {
 
     @PostMapping("/add")
     public String addOrder(Model model, Principal principal,
-                                 @RequestParam(name = "company") String company,
-                                 @RequestParam(name = "distance") String distance,
-                                 @RequestParam(name = "cargo") String cargo,
-                                 @ModelAttribute(name = "cityA") String a,
-                                 @ModelAttribute(name = "cityB") String b) {
+                           @RequestParam(name = "distance") String distance,
+                           @RequestParam(name = "cargo") String cargo,
+                           @ModelAttribute(name = "cityA") String a,
+                           @ModelAttribute(name = "cityB") String b
+            /*  @ModelAttribute(name="routes") List<String> routes*/) {
 
         OrderDTO orderDTO = new OrderDTO();
         UserDTO user = userService.findByUsername(principal.getName());
-        CompanyDTO companyDTO = companyService.findById(Long.parseLong(company));
+        CompanyDTO companyDTO = companyService.findAll().get(0);
         CargoDTO cargoDTO = cargoService.findById(Long.parseLong(cargo));
         Double distanceKM = Double.parseDouble(distance);
 

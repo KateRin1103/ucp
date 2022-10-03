@@ -12,6 +12,10 @@ import by.labworks.ucp.repository.CityRepository;
 import by.labworks.ucp.repository.RouteRepository;
 import by.labworks.ucp.service.CompanyService;
 import by.labworks.ucp.service.RouteService;
+import org.jgrapht.GraphPath;
+import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
+import org.jgrapht.graph.DefaultWeightedEdge;
+import org.jgrapht.graph.Multigraph;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -100,9 +104,39 @@ public class RouteServiceImpl implements RouteService {
     public RouteDTO findByCityAAndCityB(CityDTO cityA, CityDTO cityB) {
         City citya = cityMapper.toEntity(cityA);
         City cityb = cityMapper.toEntity(cityB);
-
         return routeMapper.toDto(routeRepository.findByCityAAndCityB(citya, cityb));
+    }
 
+    @Override
+    public List<CityDTO> findPathCities(CityDTO cityA, CityDTO cityB){
+        return findShortestPath(cityA, cityB).getVertexList();
+    }
+
+    @Override
+    public int findPathLength(CityDTO cityA, CityDTO cityB){
+        return findShortestPath(cityA, cityB).getLength();
+    }
+
+    @Override
+    public List<CityDTO> findPathEdges(CityDTO cityA, CityDTO cityB){
+        return findShortestPath(cityA, cityB).getEdgeList();
+    }
+
+    @Override
+    public GraphPath findShortestPath(CityDTO cityA, CityDTO cityB) {
+        Multigraph<CityDTO, DefaultWeightedEdge> multigraph = new Multigraph<>(DefaultWeightedEdge.class);
+        List<RouteDTO> routes = this.findAll();
+        //get graph
+        for (RouteDTO route : routes) {
+            multigraph.addVertex(route.getCityA());
+            multigraph.addVertex(route.getCityB());
+            DefaultWeightedEdge edge = multigraph.addEdge(route.getCityA(), route.getCityB());
+            multigraph.setEdgeWeight(edge, route.getDistance());
+        }
+        //find the shortest path
+        DijkstraShortestPath sp = new DijkstraShortestPath(multigraph);
+        GraphPath shortestPath = sp.getPath(cityA, cityB);
+        return shortestPath;
     }
 
     @Override
@@ -244,7 +278,7 @@ public class RouteServiceImpl implements RouteService {
 
             resultValue.put(resultCities, distance);
             result.put(company, resultValue);
-             break;
+            break;
         }
         return result;
     }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -95,14 +96,14 @@ public class RouteController {
         try {
             UserDTO userDTO = userService.findByUsername(principal.getName());
             CompanyDTO companyDTO = companyService.findByUser(userDTO);
-            companyService.addRoute(companyDTO.getId(),dto);
-            /*RouteDTO route = new RouteDTO();
+            companyService.addRoute(companyDTO.getId(), dto);
+            RouteDTO route = new RouteDTO();
             route.setDistance(dto.getDistance());
             route.setCityA(dto.getCityB());
             route.setCityB(dto.getCityA());
             route.setName(dto.getName());
             route.setDeliveryMethod(dto.getDeliveryMethod());
-            companyService.addRoute(companyDTO.getId(), route);*/
+            companyService.addRoute(companyDTO.getId(), route);
 //            routeService.save(dto);
         } catch (ServiceException e) {
             model.addAttribute("message", e.getMessage());
@@ -147,9 +148,6 @@ public class RouteController {
     }
 
 
-
-
-
     @PreAuthorize("hasRole('ROLE_CARRIER')")
     @GetMapping("/cities/add")
     public ModelAndView addCity() {
@@ -163,9 +161,9 @@ public class RouteController {
     @PreAuthorize("hasRole('ROLE_CARRIER')")
     @PostMapping("/cities/add")
     public String addCity(Model model,
-                           @Validated @ModelAttribute("cityForm") CityDTO dto,
-                           BindingResult result,
-                           Principal principal) {
+                          @Validated @ModelAttribute("cityForm") CityDTO dto,
+                          BindingResult result,
+                          Principal principal) {
         if (checkBindingResult(result)) {
             model.addAttribute("cityForm", dto);
             return "city/addCity";
@@ -187,7 +185,7 @@ public class RouteController {
     public ModelAndView chooseRoute(Model model) {
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.addObject("cargo",model.getAttribute("cargo"));
+        modelAndView.addObject("cargo", model.getAttribute("cargo"));
         modelAndView.addObject("cities", cityService.findAll());
         modelAndView.addObject("routeForm", new RouteDTO());
         modelAndView.setViewName("route/chooseRoute");
@@ -198,19 +196,27 @@ public class RouteController {
 
     @PostMapping("/choose")
     public ModelAndView chooseRoute(Model model,
-                           @Validated @ModelAttribute("routeForm") RouteDTO dto,
-                           BindingResult result,
-                           Principal principal) {
+                                    @Validated @ModelAttribute("routeForm") RouteDTO dto,
+            /* @ModelAttribute("companyForm") CompanyDTO company,*/
+                                    BindingResult result,
+                                    Principal principal) {
 
-
+/*
         Map<CompanyDTO,Map<List<CityDTO>,Double>> routes = routeService.findRoute(dto.getCityA(), dto.getCityB());
+*/
+        List<CityDTO> path = routeService.findPathCities(dto.getCityA(), dto.getCityB());
+        List<String> cities = new ArrayList<>();
+        for (CityDTO city : path) {
+            cities.add(city.getName());
+        }
 
         ModelAndView modelAndView = new ModelAndView();
 
         modelAndView.addObject("cityA", dto.getCityA());
         modelAndView.addObject("cityB", dto.getCityB());
-        modelAndView.addObject("routes", routes);
-        modelAndView.addObject("cargo", cargoService.findAll().get(cargoService.findAll().size()-1));
+        modelAndView.addObject("length", routeService.findPathLength(dto.getCityA(), dto.getCityB()));
+        modelAndView.addObject("routes", cities);
+        modelAndView.addObject("cargo", cargoService.findAll().get(cargoService.findAll().size() - 1));
         modelAndView.setViewName("route/resultRoutes");
 
         return modelAndView;
