@@ -18,6 +18,12 @@
     <%@ include file="/WEB-INF/jsp/util/baseCss.jsp" %>
 </head>
 <body class="d-flex flex-column h-100">
+<script>
+    function changeUrl() {
+        console.log('called');
+        return window.location.href ='http://localhost:9010/login';
+    }
+</script>
 <%@include file="/WEB-INF/jsp/util/header.jsp"%>
 <div class="container">
 
@@ -26,7 +32,7 @@
     <sec:authentication var="userLogin" property="principal" />
 
     <sec:authorize access="!isAuthenticated()">
-        <h2>Welcome page </h2>
+        <h2>Welcome</h2>
     </sec:authorize>
 
     <sec:authorize access="isAuthenticated()">

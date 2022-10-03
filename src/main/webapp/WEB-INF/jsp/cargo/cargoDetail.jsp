@@ -13,8 +13,8 @@
 </head>
 <body class="d-flex flex-column h-100">
 <%@ include file="/WEB-INF/jsp/util/header.jsp" %>
-<main role="main" class="container">
-    <h1 class="display-3">${cargo.name}</h1>
+<main role="main" class="container-fluid box_shadow mt-5">
+    <h2 class="">Название: ${cargo.name}</h2>
     <hr>
     <p class="lead">Тип груза: ${cargo.cargoType.type}</p>
     <p>Масса: ${cargo.weight}</p>

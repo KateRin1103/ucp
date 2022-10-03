@@ -10,7 +10,7 @@
 <body>
 <%@ include file="/WEB-INF/jsp/util/header.jsp" %>
 
-<main role="main" class="container">
+<main role="main" class="container-sm">
     <h2 class="display-6 text-center">
         Добавление города
     </h2>
@@ -25,6 +25,7 @@
                     ${message}
             </span>
         </spring:bind>
+        <button type="button" class="btn-block btn btn-lg btn-info" onclick="history.back()">Назад</button>
         <button class="btn btn-lg btn-warning btn-block" type="submit">Сохранить</button>
     </form:form>
 </main>

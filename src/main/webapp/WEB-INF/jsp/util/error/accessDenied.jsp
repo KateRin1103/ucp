@@ -22,7 +22,7 @@
             <h2>
                 ${message}
 
-                <a href="${pageContext.request.contextPath}/flights">
+                <a href="${pageContext.request.contextPath}/">
                     Назад
                 </a>
             </h2>

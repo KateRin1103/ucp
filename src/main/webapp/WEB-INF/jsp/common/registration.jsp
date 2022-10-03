@@ -8,6 +8,7 @@
     <title>Создание аккаунта</title>
 
     <%@ include file="/WEB-INF/jsp/util/baseCss.jsp" %>
+
 </head>
 
 <body >
@@ -16,16 +17,16 @@
 <%@ include file="/WEB-INF/jsp/util/header.jsp" %>
 
 
-<main role="main" class="form-signin text-center">
+<main role="main" class="container-sm text-center">
 
 
 <form:form method="POST" modelAttribute="userForm" >
 
-    <img class="mb-4 mx-auto d-block" src="${contextPath}/resources/images/logo.png" alt="" width="100" height="100">
+    <img class="mb-4 mx-auto d-block" src="${contextPath}/resources/images/logo1.png" alt="" width="100" height="100">
     <h2 class="form-signin-heading">Создать аккаунт</h2>
-
+            <div class="box_shadow form_wrapper">
             <spring:bind path="username">
-                <div class="form-floating  ${status.error ? 'has-error' : ''}">
+                <div class="form-floating ${status.error ? 'has-error' : ''}">
                     <form:input  type="text" path="username" class="form-control" placeholder="Имя пользователя"
                                 autofocus="true"/>
                     <form:errors path="username"/>
@@ -80,8 +81,10 @@
             <h3>
                     ${error}
             </h3>
+                <button class="btn btn-info btn-block" type="button" onclick="history.back()">Назад</button>
+                <button class="btn btn-warning  btn-block " type="submit">Зарегистрироваться</button>
 
-            <button class="btn btn-warning  btn-block " type="submit">Зарегистрироваться</button>
+            </div>
 
         </form:form>
 

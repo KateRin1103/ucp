@@ -53,7 +53,6 @@ public class RouteController {
         modelAndView.setViewName("route/routes");
         List<RouteDTO> all = routeService.findAll();
         modelAndView.addObject("routes", all);
-
         return modelAndView;
     }
 

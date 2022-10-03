@@ -19,7 +19,7 @@
 
             <h2>
                 Что то пошло не так
-                <a href="${pageContext.request.contextPath}/flights">
+                <a href="${pageContext.request.contextPath}/">
                     Назад
                 </a>
             </h2>
