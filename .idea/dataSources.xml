@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="ucp@localhost" uuid="dcef2a07-8b9b-4290-9317-11ac04ee4dab">
-      <driver-ref>mysql.8</driver-ref>
+    <data-source source="LOCAL" name="MySQL [2] - ucp@localhost" uuid="b19983d0-c71f-449c-8fa7-9a187a5e6e42">
+      <driver-ref>06691f1a-2a42-4eda-82c6-3dc84891ade4</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/ucp</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
-      <driver-properties>
-        <property name="connectionTimeZone" value="UTC" />
-      </driver-properties>
     </data-source>
   </component>
 </project>

@@ -23,7 +23,7 @@
                     <div class="card-body ">
                         <h5 class="card-title ">${route.name}</h5>
 
-                        <p class="card-text">${route.city_a.name}-${route.city_b.name}</p>
+                        <p class="card-text">${route.cityA.name}-${route.cityB.name}</p>
                         <p class="card-text">${route.distance} км</p>
                         <div class="d-block gap-2 mt-2">
                             <a href="${contextPath}/routes/${route.id}" class="btn btn-warning">Подробнее</a>

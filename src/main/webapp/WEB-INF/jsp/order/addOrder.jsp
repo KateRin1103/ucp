@@ -20,11 +20,11 @@
         <button class="btn btn-lg btn-warning btn-block" type="submit">Оформить</button>
     </form:form>
 
-    <form:form method="POST" modelAttribute="cargoForm" class="form-signin">
+  <%--  <form:form method="POST" modelAttribute="cargoForm" class="form-signin">
 
         <%@ include file="/WEB-INF/jsp/cargo/cargoForm.jsp" %>
         <button class="btn btn-lg btn-warning btn-block" type="submit">Оформить</button>
-    </form:form>
+    </form:form>--%>
 </main>
 
 <%@ include file="/WEB-INF/jsp/util/footer.jsp" %>

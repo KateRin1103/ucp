@@ -16,8 +16,11 @@
                 <li><a href="${contextPath}/companies/myCompany" class="nav-link px-2 text-white">Моя компания</a></li>
                 </sec:authorize>
 <%--                <li><a href="${contextPath}/companies" class="nav-link px-2 text-white">Компании</a></li>--%>
-                <sec:authorize access="isAuthenticated() && hasAuthority('ROLE_ADMIN')|| hasAuthority('ROLE_CARREER')">
+                <sec:authorize access="isAuthenticated() && hasAuthority('ROLE_ADMIN')|| hasAuthority('ROLE_CARRIER')">
                 <li><a href="${contextPath}/cargos" class="nav-link px-2 text-white">Грузы</a></li>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated() && hasAuthority('ROLE_ADMIN')|| hasAuthority('ROLE_CARRIER')">
+                    <li><a href="${contextPath}/orders" class="nav-link px-2 text-white">Заказы</a></li>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
                 <li><a href="${contextPath}/cargos/add" class="nav-link px-2 text-white">Оставить заявку</a></li>
@@ -36,7 +39,7 @@
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 
-                        <img src="/resources/images/user.png" alt="userImg" width="50" height="50" class="rounded-circle">
+                        <img src="./resources/images/user.png" alt="userImg" width="50" height="50" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
                         <li><a class="dropdown-item" href="#">Логин: ${userLogin.username}</a></li>

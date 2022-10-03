@@ -11,6 +11,6 @@
 
     <import resource="appconfig-security.xml"/>
 
-    <context:component-scan base-package="by.undrul.ucp.*"/>
+    <context:component-scan base-package="by.labworks.ucp.*"/>
 
 </beans>

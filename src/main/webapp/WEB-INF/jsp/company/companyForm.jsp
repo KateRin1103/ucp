@@ -25,6 +25,7 @@
         </div>
     </spring:bind>
     <spring:bind path="price_kg">
+        <p>Тариф ($/кг):</p>
         <div class="form-group ${status.error ? 'has-error' : ''}">
             <form:input type="number" step="0.1" path="price_kg" class="form-control" placeholder="Тариф ($/кг)"
                         autofocus="true"/>
@@ -32,6 +33,7 @@
         </div>
     </spring:bind>
     <spring:bind path="price_km">
+        <h>Тариф ($/км):</h>
         <div class="form-group ${status.error ? 'has-error' : ''}">
             <form:input type="number" step="0.1" path="price_km" class="form-control" placeholder="Тариф ($/км)"
                         autofocus="true"/>

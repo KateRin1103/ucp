@@ -25,7 +25,7 @@
     </authentication-manager>
 
     <beans:bean id="userDetailsServiceImpl"
-                class="by.undrul.ucp.service.impl.UserDetailsServiceImpl"></beans:bean>
+                class="by.labworks.ucp.service.impl.UserDetailsServiceImpl"></beans:bean>
 
     <beans:bean id="encoder"
                 class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">

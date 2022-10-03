@@ -25,6 +25,7 @@
 
     <spring:bind path="weight">
         <div class="form-group ${status.error ? 'has-error' : ''}">
+            <p>Вес:</p>
             <form:input type="number" step="0.1" path="weight" class="form-control" placeholder="Вес"
                         autofocus="true"/>
             <form:errors path="weight"/>

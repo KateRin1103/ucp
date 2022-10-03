@@ -8,7 +8,7 @@
     <%@ include file="/WEB-INF/jsp/util/baseCss.jsp" %>
     <script src="${contextPath}/resources/js/alert.js"></script>
     <title>
-        ${route.city_a}-${route.city_b}
+        ${route.cityA}-${route.cityB}
     </title>
 </head>
 <body class="d-flex flex-column h-100">
@@ -16,15 +16,15 @@
 <main role="main" class="container">
     <h1 class="display-3">${route.name}</h1>
 
-    <h5>Начальная точка: ${route.city_a.name}</h5>
+    <h5>Начальная точка: ${route.cityA.name}</h5>
 
-    <c:forEach var="city" items="${route.cities}">
+   <%-- <c:forEach var="city" items="${route.cities}">
         <p>${city.name}</p>
         <br>
-    </c:forEach>
+    </c:forEach>--%>
 
-    <h5>Конечная точка: ${route.city_b.name}</h5>
-    <p>Расстояние: ${route.distance} км</p>
+    <h5>Конечная точка: ${route.cityB.name}</h5>
+    <p>Расстояние: ${routeB.distance} км</p>
 
 </main>
 

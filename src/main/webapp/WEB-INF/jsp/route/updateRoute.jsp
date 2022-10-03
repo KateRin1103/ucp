@@ -21,13 +21,13 @@
 
         <spring:bind path="city_a">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:select id="city_a" path="city_a" class="form-control">
+                <form:select id="city_a" path="cityA" class="form-control">
                     <%--                <form:option value="0" label="Город"/>--%>
                     <form:options items="${cities}"
                                   itemLabel="name"
                                   itemValue="id"/>
                 </form:select>
-                <form:errors path="city_a"/>
+                <form:errors path="cityA"/>
             </div>
         </spring:bind>
 
@@ -43,7 +43,7 @@
                 <form:errors path="cities"/>
             </div>
         </spring:bind>
-<%--        <a href="${contextPath}/routes/update"  class="btn btn-outline-dark">Добавить город</a>--%>
+        <a href="${contextPath}/routes/update"  class="btn btn-outline-dark">Добавить город</a>
         <c:forEach var="city" items="${routeForm.cities}">
             <h5>${city.name}</h5>
             <%--<a href="${contextPath}/routes/update"  class="btn btn-outline-dark">Добавить город</a>--%>
@@ -65,13 +65,13 @@
 
         <spring:bind path="city_b">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:select id="city_b" path="city_b" class="form-control">
+                <form:select id="city_b" path="cityB" class="form-control">
                     <%--                <form:option value="0" label="Город"/>--%>
                     <form:options items="${cities}"
                                   itemLabel="name"
                                   itemValue="id"/>
                 </form:select>
-                <form:errors path="city_b"/>
+                <form:errors path="cityB"/>
             </div>
         </spring:bind>
         <spring:bind path="name">
@@ -97,7 +97,7 @@
 
 
 
-        <p>${routeForm.city_a.name} -
+        <p>${routeForm.cityA.name} -
             <a href="${contextPath}/routes/update"  class="btn btn-outline-dark">Добавить город</a> -
             <c:forEach var="city" items="${routeForm.cities}">
                 ${city.name} - <a href="${contextPath}/routes/update"  class="btn btn-outline-dark">Добавить город</a> -
