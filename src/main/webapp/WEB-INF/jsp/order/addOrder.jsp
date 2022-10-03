@@ -17,6 +17,7 @@
     <form:form method="POST" modelAttribute="cargoForm" class="form-signin">
 
         <%@ include file="/WEB-INF/jsp/cargo/cargoForm.jsp" %>
+        <button type="button" class="btn-block btn btn-lg btn-info" onclick="history.back()">Назад</button>
         <button class="btn btn-lg btn-warning btn-block" type="submit">Оформить</button>
     </form:form>
 

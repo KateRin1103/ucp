@@ -8,11 +8,11 @@
 <body>
 <%@include file="/WEB-INF/jsp/util/header.jsp"%>
 
-<main role="main" class="container">
+<main role="main" class="container-sm d-flex flex-column align-items-center">
     <p class="display-4 text-center">Грузы</p>
     <sec:authorize access="hasAuthority('ROLE_ADMIN')">
 
-        <a class="btn btn-warning addButton" href="${contextPath}/cargos/add">Добавить новый груз</a>
+        <a class="btn w-50 btn-outline-primary m-5 addButton" href="${contextPath}/cargos/add">Добавить новый груз</a>
 
     </sec:authorize>
 
@@ -20,15 +20,15 @@
         <c:forEach var="cargo" items="${cargos}">
             <div class="col-sm-6">
                 <div class="card bg-light" style="margin-bottom: 10px;" >
-                    <div class="card-body ">
+                    <div class="card-body">
                         <h5 class="card-title ">${cargo.name}</h5>
                         <p class="card-text">${cargo.cargoType.type}</p>
                         <p class="card-text">${cargo.weight}</p>
                         <br>
-                        <div class="d-block gap-2 mt-2">
+                        <div class="d-block gap-2 mt-2 ">
                             <a href="${contextPath}/cargos/${cargo.id}" class="btn btn-warning">Подробнее</a>
                             <sec:authorize access="hasAuthority('ROLE_ADMIN')">
-                                <a href="${contextPath}/cargos/update/${cargo.id}" class="btn btn-dark ">Изменить</a>
+                                <a href="${contextPath}/cargos/update/${cargo.id}" class="btn btn-info ">Изменить</a>
                                 <a href="${contextPath}/cargos/delete/${cargo.id}" class="btn btn-danger" onclick="return confirm('Вы уверены?')">Удалить</a>
                             </sec:authorize>
                         </div>

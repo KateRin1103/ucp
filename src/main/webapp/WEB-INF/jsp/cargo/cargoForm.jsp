@@ -1,6 +1,8 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div>
+<main class="container-sm">
+    <div class="box_shadow form_wrapper">
+
     <spring:bind path="name">
         <div class="form-group ${status.error ? 'has-error' : ''}">
             <form:input type="text" path="name" class="form-control" placeholder="Название груза"
@@ -31,4 +33,5 @@
             <form:errors path="weight"/>
         </div>
     </spring:bind>
-</div>
+    </div>
+</main>

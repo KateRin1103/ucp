@@ -11,13 +11,12 @@
 
 <%@ include file="/WEB-INF/jsp/util/header.jsp" %>
 
-<main role="main" class="container">
+<main role="main" class="container-sm">
 
     <h2 class="label-primary">Изменить данные о грузе</h2>
 
-    <form:form method="POST" modelAttribute="cargoForm" class="form-signin">
+    <form:form method="POST" modelAttribute="cargoForm">
         <%@ include file="/WEB-INF/jsp/cargo/cargoForm.jsp" %>
-
         <button class="btn btn-lg btn-warning btn-block" type="submit">Изменить</button>
     </form:form>
 

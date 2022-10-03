@@ -36,7 +36,7 @@ public class AuthController {
     @GetMapping(value = "/accessDenied")
     public ModelAndView accessDeniedRedirect() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("message", "У вас нет прав.");
+        modelAndView.addObject("message", "Вы не можете просматривать данный контент.");
         modelAndView.setViewName("util/error/accessDenied");
         return modelAndView;
     }
@@ -77,13 +77,13 @@ public class AuthController {
         ModelAndView modelAndView = new ModelAndView();
 
         if (Objects.nonNull(error)) {
-            modelAndView.addObject("error", "Имя пользователя или пароль неверны.");
+            modelAndView.addObject("error", "Данные были введены неверно.");
         }
         if (Objects.nonNull(logout)) {
-            modelAndView.addObject("message", "Успешны выход.");
+            modelAndView.addObject("message", "Вы вышли из системы успешно.");
         }
         if (Objects.nonNull(accessDenied)) {
-            modelAndView.addObject("message", "У вас нет прав.");
+            modelAndView.addObject("message", "Вы не можете просматривать данный контент.");
         }
         modelAndView.setViewName("common/login");
 

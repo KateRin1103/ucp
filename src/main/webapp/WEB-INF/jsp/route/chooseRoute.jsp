@@ -10,11 +10,11 @@
 <body>
 <%@ include file="/WEB-INF/jsp/util/header.jsp" %>
 
-<main role="main" class="container">
-    <h2 class="display-6 text-center">
+<main role="main" class="container-sm">
+    <h2 class="display-6 text-center pt-5">
         Добавление маршрута
     </h2>
-    <form method="POST"  action="${contextPath}/routes/choose" modelAttribute="routeForm" class="form-signin">
+    <form method="POST"  action="${contextPath}/routes/choose" modelAttribute="routeForm" class="form_wrapper box_shadow">
 
         <div class="form-group">
             <p>Откуда</p>
@@ -32,6 +32,7 @@
                     </c:forEach>
                 </select>
             </div>
+        <button type="button" class="btn-block btn btn-lg btn-info" onclick="history.back()">Назад</button>
         <button class="btn btn-lg btn-warning btn-block" type="submit">Далее</button>
     </form>
 </main>

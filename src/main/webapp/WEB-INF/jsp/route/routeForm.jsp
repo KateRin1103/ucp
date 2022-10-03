@@ -3,7 +3,7 @@
 <div>
 
     <spring:bind path="cityA">
-        <div class="form-group ${status.error ? 'has-error' : ''}">
+        <div class="form-group box_shadow form_wrapper ${status.error ? 'has-error' : ''}">
             <form:select id="cityA" path="cityA" class="form-control">
                 <form:option value="0" label="Город"/>
                 <form:options items="${cities}"
