@@ -18,4 +18,5 @@ public class OrderDTO extends AbstractDTO {
     private double cost;
     private CityDTO cityA;
     private CityDTO cityB;
+    private DeliveryTransportDTO transport;
 }

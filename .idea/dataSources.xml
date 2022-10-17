@@ -8,12 +8,5 @@
       <jdbc-url>jdbc:mysql://localhost:3306/ucp</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="ucp_lab@localhost" uuid="f7a4449b-807e-4a15-b965-5aad5d92f4ab">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/ucp_lab</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
   </component>
 </project>

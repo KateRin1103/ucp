@@ -1,6 +1,7 @@
 package by.labworks.ucp.service;
 
 import by.labworks.ucp.dto.OrderDTO;
+import by.labworks.ucp.entity.Order;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface OrderService {
 
     OrderDTO findById(Long id);
 
+    List<OrderDTO> findByCityAAndCityB(String a, String b);
 }

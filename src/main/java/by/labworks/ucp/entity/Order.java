@@ -41,4 +41,7 @@ public class Order extends AbstractEntity {
     @JoinColumn(name = "cityB_id")
     private City cityB;
 
+    @ManyToOne
+    @JoinColumn(name = "transport_id")
+    private DeliveryTransport deliveryTransport;
 }

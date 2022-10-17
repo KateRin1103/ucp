@@ -32,5 +32,5 @@ public interface RouteService {
 
     GraphPath findShortestPath(CityDTO cityA, CityDTO cityB);
 
-    Map<CompanyDTO,Map<List<CityDTO>,Double>> findRoute(CityDTO cityA, CityDTO cityB);
+    Map<CompanyDTO,Map<List<CityDTO>,Double>> findPathCites(CityDTO cityA, CityDTO cityB);
 }

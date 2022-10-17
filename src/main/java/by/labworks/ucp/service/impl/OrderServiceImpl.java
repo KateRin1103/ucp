@@ -59,4 +59,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
+    @Override
+    public List<OrderDTO> findByCityAAndCityB(String a, String b) {
+        return orderMapper.toDtoList(orderRepository.findByCityA_NameAndAndCityB_Name(a,b));
+    }
 }

@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="IU-222.4167.29">
-    <data-source name="MySQL [2] - ucp@localhost" uuid="b19983d0-c71f-449c-8fa7-9a187a5e6e42">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
-      <secret-storage>forget</secret-storage>
-      <schema-mapping />
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="MySQL [2] - ucp@localhost" uuid="b19983d0-c71f-449c-8fa7-9a187a5e6e42">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/ucp</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source name="ucp_lab@localhost" uuid="f7a4449b-807e-4a15-b965-5aad5d92f4ab">
-      <database-info product="PostgreSQL" version="12.11 (Ubuntu 12.11-1.pgdg20.04+1)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.5.0" dbms="POSTGRES" exact-version="12.11" exact-driver-version="42.5">
-        <identifier-quote-string>&quot;</identifier-quote-string>
+  </component>
+  <component name="dataSourceStorageLocal" created-in="IU-213.6461.79">
+    <data-source name="MySQL [2] - ucp@localhost" uuid="b19983d0-c71f-449c-8fa7-9a187a5e6e42">
+      <database-info product="MySQL" version="8.0.23" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.47 ( Revision: fe1903b1ecb4a96a917f7ed3190d80c049b1de29 )" dbms="MYSQL" exact-version="8.0.23" exact-driver-version="5.1">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
       </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
-      <secret-storage>master_key</secret-storage>
-      <user-name>postgres</user-name>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <user-name>root</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="database">
-            <name qname="@" />
-            <name qname="ucp_lab" />
-            <node kind="schema" qname="@" />
-          </node>
+          <node kind="schema" qname="ucp" />
         </introspection-scope>
       </schema-mapping>
     </data-source>

@@ -21,6 +21,9 @@
                 <sec:authorize access="isAuthenticated() && hasAuthority('ROLE_ADMIN')|| hasAuthority('ROLE_CARRIER')">
                     <li><a href="${contextPath}/orders" class="nav-link px-2 text-white">Заказы</a></li>
                 </sec:authorize>
+                <sec:authorize access="isAuthenticated() && hasAuthority('ROLE_ADMIN')|| hasAuthority('ROLE_CARRIER')">
+                    <li><a href="${contextPath}/knapsack" class="nav-link px-2 text-white">Оформление доставки</a></li>
+                </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
                 <li><a href="${contextPath}/cargos/add" class="nav-link px-2 text-white">Оставить заявку</a></li>
                 </sec:authorize>

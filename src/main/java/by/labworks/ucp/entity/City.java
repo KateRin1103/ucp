@@ -24,4 +24,6 @@ public class City extends AbstractEntity {
 
     @ManyToMany(mappedBy = "cities")
     private Set<Route> routes;
+
+
 }

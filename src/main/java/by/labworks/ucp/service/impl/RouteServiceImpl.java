@@ -123,24 +123,7 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public GraphPath findShortestPath(CityDTO cityA, CityDTO cityB) {
-        Multigraph<CityDTO, DefaultWeightedEdge> multigraph = new Multigraph<>(DefaultWeightedEdge.class);
-        List<RouteDTO> routes = this.findAll();
-        //get graph
-        for (RouteDTO route : routes) {
-            multigraph.addVertex(route.getCityA());
-            multigraph.addVertex(route.getCityB());
-            DefaultWeightedEdge edge = multigraph.addEdge(route.getCityA(), route.getCityB());
-            multigraph.setEdgeWeight(edge, route.getDistance());
-        }
-        //find the shortest path
-        DijkstraShortestPath sp = new DijkstraShortestPath(multigraph);
-        GraphPath shortestPath = sp.getPath(cityA, cityB);
-        return shortestPath;
-    }
-
-    @Override
-    public Map<CompanyDTO, Map<List<CityDTO>, Double>> findRoute(CityDTO cityA, CityDTO cityB) {
+    public Map<CompanyDTO, Map<List<CityDTO>, Double>> findPathCites(CityDTO cityA, CityDTO cityB) {
         List<CompanyDTO> companies = companyService.findAll();
         Map<CompanyDTO, Map<List<CityDTO>, Double>> result = new HashMap<>();
         Map<List<CityDTO>, Double> resultValue = new HashMap<>();
@@ -429,5 +412,23 @@ List<CityDTO> resultCities = new ArrayList<>();
         }
         return result;
     }*/
+
+    @Override
+    public GraphPath findShortestPath(CityDTO cityA, CityDTO cityB) {
+        Multigraph<CityDTO, DefaultWeightedEdge> multigraph = new Multigraph<>(DefaultWeightedEdge.class);
+        List<RouteDTO> routes = this.findAll();
+        //get graph
+        for (RouteDTO route : routes) {
+            multigraph.addVertex(route.getCityA());
+            multigraph.addVertex(route.getCityB());
+            DefaultWeightedEdge edge = multigraph.addEdge(route.getCityA(), route.getCityB());
+            multigraph.setEdgeWeight(edge, route.getDistance());
+        }
+        //find the shortest path
+        DijkstraShortestPath sp = new DijkstraShortestPath(multigraph);
+        GraphPath shortestPath = sp.getPath(cityA, cityB);
+        return shortestPath;
+    }
+
 }
 

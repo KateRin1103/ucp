@@ -196,7 +196,6 @@ public class RouteController {
     @PostMapping("/choose")
     public ModelAndView chooseRoute(Model model,
                                     @Validated @ModelAttribute("routeForm") RouteDTO dto,
-            /* @ModelAttribute("companyForm") CompanyDTO company,*/
                                     BindingResult result,
                                     Principal principal) {
 

@@ -77,15 +77,13 @@ public class OrderController {
                            @RequestParam(name = "distance") String distance,
                            @RequestParam(name = "cargo") String cargo,
                            @ModelAttribute(name = "cityA") String a,
-                           @ModelAttribute(name = "cityB") String b
-            /*  @ModelAttribute(name="routes") List<String> routes*/) {
+                           @ModelAttribute(name = "cityB") String b) {
 
         OrderDTO orderDTO = new OrderDTO();
         UserDTO user = userService.findByUsername(principal.getName());
         CompanyDTO companyDTO = companyService.findAll().get(0);
         CargoDTO cargoDTO = cargoService.findById(Long.parseLong(cargo));
         Double distanceKM = Double.parseDouble(distance);
-
         Double cost = companyDTO.getPrice_km() * distanceKM + companyDTO.getPrice_kg() * cargoDTO.getWeight();
         orderDTO.setCustomer(user);
         orderDTO.setCityA(cityService.findById(Long.parseLong(a)));
